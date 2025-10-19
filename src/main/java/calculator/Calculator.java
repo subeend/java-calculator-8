@@ -5,8 +5,8 @@ import java.util.regex.Matcher;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class StringAddCalculator {
-    private StringAddCalculator() {}
+public final class Calculator {
+    private Calculator() {}
 
     private static final Pattern CUSTOM_HEADER =
             Pattern.compile("^//(.)" + "(?:\\R|\\\\n)" + "(.*)$", Pattern.DOTALL);
@@ -62,7 +62,7 @@ public final class StringAddCalculator {
 
     private static int parsePositiveInt(String token) {
         if (!NUMBER.matcher(token).matches()) {
-            throw new IllegalArgumentException("올바르지 않은 형태의 문자열이에요."); // 비숫자
+            throw new IllegalArgumentException("올바르지 않은 형태의 문자열이에요.");
         }
         int v = Integer.parseInt(token);
         if (v < 0) {
