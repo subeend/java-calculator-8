@@ -8,7 +8,7 @@ import java.util.List;
 public final class StringAddCalculator {
     private StringAddCalculator() {}
 
-    private static final Pattern CUSTOM_HEADER = Pattern.compile("//(.)\\n(.*)", Pattern.DOTALL);
+    private static final Pattern CUSTOM_HEADER = Pattern.compile("//(.)\\\\n(.*)", Pattern.DOTALL);
     private static final Pattern NUMBER = Pattern.compile("\\d+");
 
     public static int add(String input){
@@ -16,6 +16,7 @@ public final class StringAddCalculator {
             return 0;
         }
         input = input.trim();
+
 
         if(input.startsWith("//")){
             Matcher m = CUSTOM_HEADER.matcher(input);
