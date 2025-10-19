@@ -7,7 +7,8 @@ public class Application {
         System.out.println("덧셈할 문자열을 입력해주세요.");
         String input = Console.readLine();
 
-        int result =StringAddCalculator.add(input);
-        System.out.println("결과: " + result);
+        int sum = StringAddCalculator.add(input);
+
+        System.out.println("결과 : " + sum);
     }
 }

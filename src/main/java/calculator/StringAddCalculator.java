@@ -8,7 +8,8 @@ import java.util.List;
 public final class StringAddCalculator {
     private StringAddCalculator() {}
 
-    private static final Pattern CUSTOM_HEADER = Pattern.compile("//(.)\\\\n(.*)", Pattern.DOTALL);
+    private static final Pattern CUSTOM_HEADER =
+            Pattern.compile("^//(.)" + "(?:\\R|\\\\n)" + "(.*)$", Pattern.DOTALL);
     private static final Pattern NUMBER = Pattern.compile("\\d+");
 
     public static int add(String input){
@@ -46,7 +47,8 @@ public final class StringAddCalculator {
             delimiterRegex = delimiterRegex + "|" + custom;
         }
 
-        String[] raw = numbers.split(delimiterRegex);
+        String[] raw = numbers.split(delimiterRegex, -1);
+
         List<String> tokens = new ArrayList<>(raw.length);
         for (String r : raw) {
             String t = r.trim();
@@ -63,7 +65,7 @@ public final class StringAddCalculator {
             throw new IllegalArgumentException("올바르지 않은 형태의 문자열이에요."); // 비숫자
         }
         int v = Integer.parseInt(token);
-        if (v <= 0) {
+        if (v < 0) {
             throw new IllegalArgumentException("양수만 입력할 수 있습니다: " + v);
         }
         return v;
